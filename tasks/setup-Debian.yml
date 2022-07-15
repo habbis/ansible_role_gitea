@@ -22,7 +22,7 @@
 - name: Install postges server and python package
   ansible.builtin.package:
     name: 
-      - postgresql-"{{ postgres_version }}"
+      - "postgresql-{{ postgres_version }}"
       - python3-psycopg2
       - pigz
     state: present
