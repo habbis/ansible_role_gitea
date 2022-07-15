@@ -1,9 +1,15 @@
 ---
- name: Install postges server and python package
+- name: Install postgres repo rhel 8
+  ansible.builtin.dnf:
+    name: 'https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm'
+    state: present
+
+- name: Install postges server and python package
   ansible.builtin.package:
     name: 
       - postgresql-"{{ postgres_version }}"
       - python3-psycopg2
+      - pigz
     state: present
 
 - name: deploy postgres.conf with tuning
@@ -14,9 +20,13 @@
     group: postgres
     mode: '0644'
 
-- name: Create postgres database
+- name: Create postgres database wih encoding
   community.postgresql.postgresql_db:
     name: "{{ postgres_database }}"
+    encoding: UTF-8
+    lc_collate: en_US.UTF-8
+    lc_ctype: en_US.UTF-8
+    template: template0
     state: present
   become_user: postgres
 
