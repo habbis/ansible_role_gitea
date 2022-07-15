@@ -16,7 +16,7 @@
     group: root
     mode: '0644'
 
- name: Install postges server and python package
+- name: Install postges server and python package
   ansible.builtin.package:
     name: 
       - postgresql-"{{ postgres_version }}"
