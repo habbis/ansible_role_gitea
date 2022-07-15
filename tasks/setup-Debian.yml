@@ -35,6 +35,12 @@
     group: postgres
     mode: '0644'
 
+- name: restart postgres servies so tuning can take effect
+  ansible.builtin.systemd:
+    name: postgresql
+    enabled: yes
+    state: restarted
+
 - name: Create postgres database wih encoding
   community.postgresql.postgresql_db:
     name: "{{ postgres_database }}"
@@ -66,8 +72,3 @@
     state: present
   become_user: postgres
 
-- name: restart postgres servies so tuning can take effect
-  ansible.builtin.systemd:
-    name: postgresql
-    enabled: yes
-    state: restarted
