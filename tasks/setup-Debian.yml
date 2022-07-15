@@ -17,7 +17,6 @@
 
 - name: Update repositories 
   ansible.builtin.apt:
-    #name: foo
     update_cache: yes
 
 - name: Install postges server and python package
