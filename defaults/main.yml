@@ -21,7 +21,6 @@ postgres_version: 14
 #postgres_conf: /etc/postgresql/13/main/postgresql.conf
 # postgres tuning 
 # https://pgtune.leopard.in.ua/
-postgres_version: 13
 max_connections: 300
 shared_buffers: 256MB
 effective_cache_size: 768MB
