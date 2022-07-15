@@ -1,5 +1,5 @@
 ---
-- name: copy jenkins lts key
+- name: copy postgres key
   ansible.builtin.copy:
     src: files/debian/postgres_pgp_key_ACCC4CF8.asc
     dest: /usr/share/keyrings/postgres-keyring.asc
@@ -30,7 +30,7 @@
 - name: deploy postgres.conf with tuning
   ansible.builtin.template:
     src: templates/postgresql.conf.j2
-    dest: "{{ postgres_conf }}"
+    dest: "/etc/postgresql/{{ postgres_version }}/main/postgresql.conf"
     owner: postgres
     group: postgres
     mode: '0644'
