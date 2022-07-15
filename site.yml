@@ -1,5 +1,5 @@
 ---
-- name: setup puppet agent
+- name: setup gitea
   gather_facts: yes
   remote_user: root
   #remote_user: ansible
