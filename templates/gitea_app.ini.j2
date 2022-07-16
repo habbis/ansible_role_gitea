@@ -5,9 +5,9 @@ RUN_MODE = prod
 [database]
 DB_TYPE  = postgres
 HOST     = {{ ip_address }}:5432
-NAME     = giteadb
-USER     = gitea
-PASSWD   = mysupersecretword
+NAME     = {{ postgres_database }}
+USER     = {{ postgres_user }}
+PASSWD   = {{ postgres_user_password }}
 SCHEMA   = 
 SSL_MODE = disable
 CHARSET  = utf8

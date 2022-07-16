@@ -40,7 +40,7 @@
 
 - name: deploy pg_hba.conf
   ansible.builtin.template:
-    src: templates/pg_hba.conf.j2
+    src: templates/pg_hba.conf_debian.j2
     dest: "/etc/postgresql/{{ postgres_version }}/main/pg_hba.conf"
     owner: postgres
     group: postgres
@@ -73,8 +73,6 @@
     source: "{{ ip_address }}/{{ netmask }}"
     databases: "{{ postgres_database }}"
     method: "{{ postgres_auth_method }}"
-    #login_user: postgres
-    #login_unix_socket: /var/run/postgresql/
     state: present
   become_user: postgres
 

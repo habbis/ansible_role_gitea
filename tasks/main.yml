@@ -127,7 +127,7 @@
     owner: postgres
     group: postgres
     mode: '744'
-    state: file
+    state: touch
 
 - name: add add postgres backup cronjob
   ansible.builtin.cron:
