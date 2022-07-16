@@ -88,16 +88,22 @@
 - name: secure permissions gitea /etc
   ansible.builtin.file:
     path: /etc/gitea
-    #owner: root
-    #group: root
     mode: '750'
 
-- name: secure permissions gitea dir
-  ansible.builtin.file:
-    path: /etc/gitea/app.ini
-    #owner: root
-    #group: root
-    mode: '640'
+- name: generate LFS_JWT_SECRET
+  shell: gitea generate secret JWT_SECRET
+  register:  gitea_LFS_JWT_SECRET
+
+- name: generate INTERNAL_TOKEN
+  shell: gitea generate secret INTERNAL_TOKEN
+  register:  gitea_INTERNAL_TOKEN
+
+- name: deploy gitea app.ini
+  ansible.builtin.template:
+    src: templates/gitea_app.ini.j2
+    dest: /etc/gitea/app.ini
+    mode: '0640'
+
 
 - name: deploy postgres backup script
   ansible.builtin.template:
@@ -110,9 +116,18 @@
 - name: create postgres backup dir
   ansible.builtin.file:
     path: /mnt/backup
-    owner: root
-    group: root
-    mode: '644'
+    owner: postgres
+    group: postgres
+    mode: '744'
+    state: directory
+
+- name: create postgres backup log
+  ansible.builtin.file:
+    path: /mnt/backup/postgres_backup_log
+    owner: postgres
+    group: postgres
+    mode: '744'
+    state: file
 
 - name: add add postgres backup cronjob
   ansible.builtin.cron:
@@ -120,6 +135,6 @@
     minute: "0"
     hour: "20"
     #day: "1"
-    user: root
+    user: postgres
     job: "/usr/local/postgres_backup.sh > /dev/null"
     state: present

@@ -50,6 +50,7 @@
     name: "postgresql-{{ postgres_version }}"
     enabled: yes
     state: restarted
+  ignore_errors: True
 
 - name: Create postgres database wih encoding
   community.postgresql.postgresql_db:
@@ -81,9 +82,3 @@
     method: "{{ postgres_auth_method }}"
     state: present
   become_user: postgres
-
-#- name: restart postgres servies so tuning can take effect
-#  ansible.builtin.systemd:
-#    name: "postgresql-{{ postgres_version }}"
-#    enabled: yes
-#    state: restarted

@@ -36,3 +36,8 @@ effective_io_concurrency: 2
 work_mem: 436kB
 min_wal_size: 1GB
 max_wal_size: 4GB
+
+
+# gitea
+
+gitea_fqdn: gitea.local.net

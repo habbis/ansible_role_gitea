@@ -20,14 +20,13 @@ ROOT = /var/lib/gitea/data/gitea-repositories
 [server]
 SSH_DOMAIN       = {{ gitea_fqdn }}
 DOMAIN           = {{ gitea_fqdn }}
-#HTTP_PORT        = 3000
-HTTP_PORT        = 443
+HTTP_PORT        = 3000
 ROOT_URL         = https://{{ gitea_fqdn }}
 DISABLE_SSH      = false
 SSH_PORT         = 22
 LFS_START_SERVER = true
 LFS_CONTENT_PATH = /var/lib/gitea/data/lfs
-LFS_JWT_SECRET   = {{ gitea_LFS_JWT_SECRET }}
+LFS_JWT_SECRET   = {{ gitea_LFS_JWT_SECRET.stdout }}
 OFFLINE_MODE     = false
 
 [mailer]
@@ -36,7 +35,7 @@ ENABLED = false
 [service]
 REGISTER_EMAIL_CONFIRM            = false
 ENABLE_NOTIFY_MAIL                = false
-DISABLE_REGISTRATION              = false
+DISABLE_REGISTRATION              = true
 ALLOW_ONLY_EXTERNAL_REGISTRATION  = false
 ENABLE_CAPTCHA                    = false
 REQUIRE_SIGNIN_VIEW               = false
@@ -64,6 +63,6 @@ ROUTER    = console
 
 [security]
 INSTALL_LOCK       = true
-INTERNAL_TOKEN     = {{ gitea_INTERNAL_TOKEN }}
+INTERNAL_TOKEN     = {{ gitea_INTERNAL_TOKEN.stdout }}
 PASSWORD_HASH_ALGO = pbkdf2
 
