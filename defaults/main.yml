@@ -45,4 +45,5 @@ gitea_fqdn: gitea.local.net
 # haproxy
 
 # copy snakeoil.pem if true
-ssl_cert: true
+copy_ssl: true
+ssl_cert: snakeoil

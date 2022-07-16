@@ -5,9 +5,6 @@
 - include_tasks: setup-Debian_postgres.yml
   when: (ansible_distribution == "Debian" or ansible_distribution == "Ubuntu")
 
-- include_tasks: setup-haproxy.yml
-
-
 - name: Download gitea 
   ansible.builtin.get_url:
     url: "https://dl.gitea.io/gitea/{{gitea_version}}/gitea-{{gitea_version}}-linux-amd64"
@@ -137,3 +134,5 @@
     user: postgres
     job: "/usr/local/postgres_backup.sh > /dev/null"
     state: present
+
+- include_tasks: setup-haproxy.yml
