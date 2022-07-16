@@ -2,13 +2,15 @@ ansible_role_gitea
 =========
 
 
-This ansible role setup gitea server all in one with postgres database.
+This ansible role setup gitea server all in one with postgres databasea and haproxy as a reverse proxy for gitea
 
 See defaults/main.yml for variables .
 
 Postgres tuning is set to use 1G ram. 
 
 
+
+---
 
 
 This ansible template is using jenkins multibranch pipeline to test ansible-playbooks and you need docker installed on the build node.
