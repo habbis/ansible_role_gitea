@@ -41,3 +41,8 @@ max_wal_size: 4GB
 # gitea
 
 gitea_fqdn: gitea.local.net
+
+# haproxy
+
+# copy snakeoil.pem if true
+copy_ssl: true
