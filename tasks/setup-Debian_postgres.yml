@@ -18,16 +18,25 @@
   when: postgres_repo
   ignore_errors: True
 
-- name: Update repositories 
-  ansible.builtin.apt:
-    update_cache: yes
+#- name: Update repositories 
+#  ansible.builtin.apt:
+#    update_cache: yes
+
+#- name: Install postges server and python package
+#  ansible.builtin.package:
+#    name: 
+#      - "postgresql-{{ postgres_version }}"
+#      - python3-psycopg2
+#      - pigz
+#    state: present
 
 - name: Install postges server and python package
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name: 
       - "postgresql-{{ postgres_version }}"
       - python3-psycopg2
       - pigz
+    update_cache: yes
     state: present
 
 - name: deploy postgres.conf with tuning
