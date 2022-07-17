@@ -84,6 +84,8 @@
 - name: secure permissions gitea /etc
   ansible.builtin.file:
     path: /etc/gitea
+    owner: git
+    group: git
     mode: '750'
 
 - name: generate LFS_JWT_SECRET
