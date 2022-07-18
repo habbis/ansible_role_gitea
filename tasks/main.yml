@@ -97,7 +97,7 @@
   register:  gitea_INTERNAL_TOKEN
 
 - name: set admin user and password
-  shell: "gitea admin change-password --username {{ gitea_admin} --password {{ gitea_admin_password }}"
+  shell: "gitea admin change-password --username {{ gitea_admin }} --password {{ gitea_admin_password }}"
 
 - name: deploy gitea app.ini
   ansible.builtin.template:
