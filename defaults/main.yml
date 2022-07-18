@@ -38,6 +38,8 @@ max_wal_size: 4GB
 # gitea
 gitea_version: 1.16.8
 gitea_fqdn: gitea.local.net
+gitea_admin: admin
+gitea_admin_password: mysupersecretword
 
 # haproxy
 
