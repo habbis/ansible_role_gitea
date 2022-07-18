@@ -105,7 +105,8 @@
     mode: '0640'
 
 - name: set admin user and password
-  shell: "gitea admin change-password --username {{ gitea_admin }} --password {{ gitea_admin_password }} -c /etc/gitea/app.ini"
+  #shell: "gitea admin change-password --username {{ gitea_admin }} --password {{ gitea_admin_password }} -c /etc/gitea/app.ini"
+  shell: "gitea admin user create --username {{ gitea_admin }} --password {{ gitea_admin_password }} --email admin@locale.net"
 
 - name: deploy postgres backup script
   ansible.builtin.template:
