@@ -100,8 +100,9 @@
   ansible.builtin.template:
     src: templates/gitea_app.ini.j2
     dest: /etc/gitea/app.ini
+    owner: git
+    group: git
     mode: '0640'
-
 
 - name: deploy postgres backup script
   ansible.builtin.template:
