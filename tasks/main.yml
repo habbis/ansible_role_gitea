@@ -107,11 +107,10 @@
 
 - name: gitea delete admin user and password
   shell: "sudo -u git bash -c '/usr/local/bin/gitea admin user delete --id 1 --email admin@locale.net --username {{ gitea_admin }} -c /etc/gitea/app.ini'"
-  #become_user: git
+  ignore_errors: True
 
 - name: gitea create admin user and password
   shell: "sudo -u git bash -c 'gitea admin user create --username {{ gitea_admin }} --password {{ gitea_admin_password }} --email admin@locale.net --admin -c /etc/gitea/app.ini'"
-  #become_user: git
 
 - name: deploy postgres backup script
   ansible.builtin.template:
